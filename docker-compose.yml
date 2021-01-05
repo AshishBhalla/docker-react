@@ -1,0 +1,33 @@
+version : '3'
+services:
+  web:
+    # to make it work else react app will exit with status_code 0
+    stdin_open: true
+    # option added for app to detect changes
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    # below will not work as we have Dockerfil.dev and not Dockerfile
+    # build: .
+    # Hence we override this
+    build: 
+      # context to tell from which directory refer the files
+      # . means PWD or ROOT
+      context: .
+      dockerfile: 'Dockerfile.dev'
+    ports:
+      - "3000:3000"
+    volumes:
+      - "/app/node_modules"
+      - ".:/app"
+    # Creating service for unit testing
+  tests:
+    build: 
+      # context to tell from which directory refer the files
+      # . means PWD or ROOT
+      context: .
+      dockerfile: 'Dockerfile.dev'
+    volumes:
+      - "/app/node_modules"
+      - ".:/app"
+    # override command
+    command: ["npm","run","test"]
