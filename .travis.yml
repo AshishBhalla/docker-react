@@ -1,5 +1,6 @@
 # to tell travis that we need admin privilege
 sudo: required
+language: generic
 # to tell travis which service is required
 services: 
   - docker
