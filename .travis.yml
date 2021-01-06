@@ -2,17 +2,17 @@
 sudo: required
 language: generic
 # to tell travis which service is required
-services: 
+services:
   - docker
 # hooks to tell what need to be done before install
 before_install:
 # give the command that we want to run.
 # -t --> adding a tag for the image that will be generated after the build
-# We can give tag any name e.g. TEST, MYIMAGE etc. but its convention to use
+# We can give tag any name e.g. test, myimage etc. but its convention to use
 # github username/repo name
 # this tag then can be referred in the .travis.yml file to refer to the image ID
-  - docker build -t AshishBhalla/docker-react -f Dockerfile.dev .
+  - docker build -t myimage -f Dockerfile.dev .
 # to tell which commands needs to be run
 script:
 #              additional variables to be compatible with jest library
-  - docker run -e CI=true AshishBhalla/docker-react npm run test
+  - docker run -e CI=true myimage npm run test
