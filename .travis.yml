@@ -22,7 +22,7 @@ deploy:
   provider: elasticbeanstalk
   region: "us-east-2"
   app: "docker-react"
-  env: "DokcerReact-env"
+  env: "DockerReact-env"
   bucket_name: "elasticbeanstalk-us-east-2-795393899311"
   # when we first created the EBS, bucket path(folder) may not be there,hence give it same as app
   bucker_path: "docker-react"
