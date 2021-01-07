@@ -13,6 +13,8 @@ RUN npm run build
 # Remember any single step can have only one FROM step, so now docker automatically
 # knows that next step has been started
 FROM nginx
+# exposing port for incoming traffic - will be used in PROD deployment on Elastic beanstalk, no effect on local
+EXPOSE 80
 # this --from=0 is refering to first block
 # we can also refer it to by its name, if given above as 
 # COPY --from=builder
