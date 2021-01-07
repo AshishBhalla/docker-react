@@ -16,3 +16,21 @@ before_install:
 script:
 #              additional variables to be compatible with jest library
   - docker run -e CI=true myimage npm run test
+# how to take our application and deploy it to AWS
+deploy:
+  # deploy on EBS
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-react"
+  env: "DokcerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-795393899311"
+  # when we first created the EBS, bucket path(folder) may not be there,hence give it same as app
+  bucker_path: "docker-react"
+  # only deploy app if the code is pushed on to the master branch
+  on:
+    branch: master
+  # taking access_key_id and secret_Access_key of the user that we created in AWS
+  # from travis-ci environment variables
+  # Remeber we had to add these environment variables first in the travis-ci
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
